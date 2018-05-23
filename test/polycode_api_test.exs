@@ -1,8 +1,8 @@
-defmodule MoipFlowTest do
+defmodule HotApiTest do
   use ExUnit.Case
-  doctest MoipFlow
+  doctest HotApi
 
   test "greets the world" do
-    assert MoipFlow.soma(1,2) == 3
+    assert HotApi.soma(1,2) == 3
   end
 end

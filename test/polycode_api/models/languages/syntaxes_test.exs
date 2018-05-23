@@ -1,8 +1,8 @@
-defmodule MoipFlow.Models.Languages.SynataxesTest do
+defmodule HotApi.Models.Languages.SynataxesTest do
   use ExUnit.Case
-  doctest MoipFlow.Models.Languages.Synataxes
+  doctest HotApi.Models.Languages.Synataxes
 
   test "greets the world" do
-    assert MoipFlow.soma(1,2) == 3
+    assert HotApi.soma(1,2) == 3
   end
 end

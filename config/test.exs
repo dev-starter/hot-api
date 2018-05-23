@@ -1,7 +1,7 @@
 use Mix.Config
 
 # Ecto
-config :moip_flow, MoipFlow.Repo,
+config :hot_api, HotApi.Repo,
   adapter: Ecto.Adapters.MySQL,
   database: "polycode_repo_test",
   username: "root",
@@ -13,7 +13,7 @@ config :moip_flow, MoipFlow.Repo,
 config :mongodb,
   database: "polycode",
   collection_default: "languages",
-  username: "moip_flow",
+  username: "hot_api",
   password: "1YOHlJmFXRrVMJuy",
   hostname: "ds259855.mlab.com:59855",
   pool: 20

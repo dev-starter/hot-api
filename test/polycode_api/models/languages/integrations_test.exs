@@ -1,8 +1,8 @@
-defmodule MoipFlow.Models.Languages.IntegrationsTest do
+defmodule HotApi.Models.Languages.IntegrationsTest do
   use ExUnit.Case
-  doctest MoipFlow.Models.Languages.Integrations
+  doctest HotApi.Models.Languages.Integrations
 
   test "greets the world" do
-    assert MoipFlow.soma(1,2) == 3
+    assert HotApi.soma(1,2) == 3
   end
 end

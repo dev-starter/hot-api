@@ -2,8 +2,8 @@ use Mix.Config
 
 import_config "#{Mix.env}.exs"
 
-config :moip_flow,
-        ecto_repos: [MoipFlow.Repo]
+config :hot_api,
+        ecto_repos: [HotApi.Repo]
 
-config :maru, MoipFlow.Base,
+config :maru, HotApi.Base,
         http: [port: 3001]
