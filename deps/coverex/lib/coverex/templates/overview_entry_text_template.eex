@@ -1,1 +1,0 @@
-<%= String.rjust ratio, 5 %>% <%= String.rjust cov, 7 %> <%= String.rjust uncov, 10 %> <%= entry %>
