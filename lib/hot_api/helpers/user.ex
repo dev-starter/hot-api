@@ -1,4 +1,4 @@
-defmodule HotApi.Helpers.Languages do
+defmodule HotApi.Helpers.User do
   use Maru.Helper
 
   params :format do

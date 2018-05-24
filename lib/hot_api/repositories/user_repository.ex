@@ -1,5 +1,5 @@
-defmodule HotApi.Services.Languages do
-  alias HotApi.Services.Languages
+defmodule HotApi.Repositories.UserRepository do
+  alias HotApi.Repositories.UserRepository
   import Application
   require Mongo
   require Cachex
@@ -8,16 +8,16 @@ defmodule HotApi.Services.Languages do
   def fast_find(query_key, projection \\ %{}) do
     cond do
       query_key == "all" -> search_query = %{}
-      true              -> search_query = %{language: query_key}
+      true              -> search_query = %{externalID: query_key}
     end
 
-    case Languages.find_from_cache(query_key, projection) do
+    case UserRepository.find_from_cache(query_key, projection) do
       {:ok, result} ->
         Logger.info query_key <> " resource from Cache"
 
         result |> Enum.map &(&1 |> Map.delete("_id"))
       {:missing, projection, key} ->
-        result = Languages.find(search_query, projection) |> Enum.map &(&1 |> Map.delete("_id"))
+        result = UserRepository.find(search_query, projection) |> Enum.map &(&1 |> Map.delete("_id"))
         Logger.info query_key <> " resource from Mongo - cached on " <> key
 
         Cachex.set(:cache, key, result)
@@ -37,7 +37,7 @@ defmodule HotApi.Services.Languages do
   end
 
   def find_from_cache(query_key, projection) do
-    projectionList = Languages.atomize(projection)
+    projectionList = UserRepository.atomize(projection)
     key = List.flatten([projectionList, query_key]) |> Enum.join("_")
 
     case Cachex.get(:cache, key) do

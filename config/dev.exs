@@ -10,9 +10,9 @@ config :hot_api, HotApi.Repo,
 
 # Mongo
 config :mongodb,
-  database: "polycode",
-  collection_default: "languages",
-  username: "polycode_api",
-  password: "1YOHlJmFXRrVMJuy",
-  hostname: "ds259855.mlab.com:59855",
+  database: "hotsite",
+  collection_default: "users",
+  username: "hotsite",
+  password: "DkUg*0TuRCTw",
+  hostname: "ds233500.mlab.com:33500",
   pool: 20
