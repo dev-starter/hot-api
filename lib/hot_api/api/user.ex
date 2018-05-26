@@ -1,10 +1,8 @@
 defmodule HotApi.API.User do
   use Maru.Router
-  # alias HotApi.Domain.User
   alias HotApi.Repositories.UserRepository
   alias UserRepository.DocumentsRepository
   require Logger
-  require IEx
 
   helpers HotApi.Helpers.User
 

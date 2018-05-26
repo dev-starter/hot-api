@@ -6,6 +6,6 @@ defmodule HotApi.Repositories.UserRepository do
   end
 
   def find(user) do
-    List.first Repository.fast_find(user)
+    List.first Repository.fast_find(%{externalID: user})
   end
 end

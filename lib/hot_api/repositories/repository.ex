@@ -7,18 +7,22 @@ defmodule HotApi.Repositories.Repository do
 
   def fast_find(query_key, projection \\ %{}) do
     cond do
-      query_key == "all" -> search_query = %{}
-      true              -> search_query = %{externalID: query_key}
+      query_key == "all" ->
+        search_query = %{}
+        query_value = query_key
+      true               ->
+        search_query = query_key
+        [query_value] = Map.values(query_key)
     end
 
-    case Repository.find_from_cache(query_key, projection) do
+    case Repository.find_from_cache(query_value, projection) do
       {:ok, result} ->
-        Logger.info query_key <> " resource from Cache"
+        Logger.info query_value <> " resource from Cache"
 
         result |> Enum.map &(&1 |> Map.delete("_id"))
       {:missing, projection, key} ->
         result = Repository.find(search_query, projection) |> Enum.map &(&1 |> Map.delete("_id"))
-        Logger.info query_key <> " resource from Mongo - cached on " <> key
+        Logger.info query_value <> " resource from Mongo - cached on " <> key
 
         Cachex.set(:cache, key, result)
         result
@@ -43,7 +47,7 @@ defmodule HotApi.Repositories.Repository do
     case Cachex.get(:cache, key) do
       {:ok, value} ->
         case value do
-          nil -> {:missing, projection}
+          nil -> {:missing, projection, key}
           _   -> {:ok, value}
         end
 
