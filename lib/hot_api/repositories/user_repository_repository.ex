@@ -1,4 +1,4 @@
-defmodule HotApi.Repositories.UserRepository do
+defmodule HotApi.Domain.UserRepository do
   alias HotApi.Repositories.Repository
 
   def all do

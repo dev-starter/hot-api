@@ -1,5 +1,5 @@
-defmodule HotApi.Domain.User.Documents do
-  alias HotApi.Repositories.UserRepository
+defmodule HotApi.Repositories.UserRepository.DocumentsRepository do
+  alias HotApi.Repositories.Repository
   require IEx
   @moduledoc ~S"""
   # Algorithms Model
@@ -16,7 +16,7 @@ defmodule HotApi.Domain.User.Documents do
       2
   """
   def all do
-    UserRepository.fast_find("all", %{documents: 1, externalID: 1})
+    Repository.fast_find("all", %{documents: 1, externalID: 1})
   end
 
   @doc ~S"""
@@ -28,6 +28,6 @@ defmodule HotApi.Domain.User.Documents do
       2
   """
   def find(documents) do
-    List.first UserRepository.fast_find(documents, %{documents: 1, externalID: 1})
+    List.first Repository.fast_find(documents, %{documents: 1, externalID: 1})
   end
 end
