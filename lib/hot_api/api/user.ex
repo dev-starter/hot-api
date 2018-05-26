@@ -1,26 +1,25 @@
 defmodule HotApi.API.User do
   use Maru.Router
-  alias HotApi.Repositories.UserRepository
-  alias UserRepository.DocumentsRepository
+  alias HotApi.Services.UserService
   require Logger
 
   helpers HotApi.Helpers.User
 
   namespace :users do
-    desc "Retrieve list of the Languages"
+    desc "Retrieve list of the users"
     get do
-      conn |> json(UserRepository.all)
+      conn |> json(UserService.get_all)
     end
 
     route_param :externalID, type: String do
-      desc "Retrieve a Languages collection data"
+      desc "Retrieve a user collection data"
       get do
-        conn |> json(UserRepository.find(params[:externalID]))
+        conn |> json(UserService.find(params[:externalID]))
       end
 
-      desc "Retrieve list of the Algorithms by language"
+      desc "Retrieve list of the documents by externalID"
       get :documents do
-        conn |> json(DocumentsRepository.find(params[:externalID]))
+        conn |> json(UserService.find_documents(params[:externalID]))
       end
     end
   end
