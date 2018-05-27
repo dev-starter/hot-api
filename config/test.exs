@@ -1,14 +1,5 @@
 use Mix.Config
 
-# Ecto
-config :hot_api, HotApi.Repo,
-  adapter: Ecto.Adapters.MySQL,
-  database: "polycode_repo_test",
-  username: "root",
-  password: "root",
-  hostname: "mysql",
-  pool: Ecto.Adapters.SQL.Sandbox
-
 # Mongo
 config :mongodb,
   database: "polycode",

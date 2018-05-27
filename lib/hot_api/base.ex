@@ -8,7 +8,7 @@ defmodule HotApi.Base do
     json_decoder: Poison,
     parsers: [:urlencoded, :json, :multipart]
 
-  mount HotApi.API.Languages
+  mount HotApi.API.User
 
   rescue_from :all do
     conn
