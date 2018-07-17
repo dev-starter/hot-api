@@ -1,6 +1,8 @@
 defmodule HotApi do
   require Mongo
   import Application
+  import Cachex.Spec
+
 
   @moduledoc """
   # PolyCode API
@@ -36,7 +38,8 @@ defmodule HotApi do
         pool: DBConnection.Poolboy
       ]]),
       worker(Cachex, [ :cache, [
-        expiration: [default: :timer.minutes(1)]
+        expiration: expiration(default: :timer.minutes(1)),
+        limit: limit(size: 500, policy: Cachex.Policy.LRW, reclaim: 0.5)
       ]])
     ]
 
